@@ -1,0 +1,19 @@
+name: Sync with upstream
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/fetch-upstream@v1
+        with:
+          upstream: 'https://github.com/OriginalRepo/OriginalProject.git'
+      - uses: actions/merge@v1
+        with:
+          main: 'upstream/master'
